@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sesame Dithupa Heart</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Bigger heart container */
+#ui {
+    position: relative;
+    width: 800px;
+    height: 800px;
+}
+
+/* Text styling */
+.love_word {
+    position: absolute;
+    color: #ff69b4;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0 0 12px #fff, 0 0 20px #ff69b4;
+    white-space: nowrap;
+    animation: float 4s ease-in-out infinite alternate;
+}
+
+/* Floating animation */
+@keyframes float {
+    from { transform: translateY(-8px); }
+    to { transform: translateY(8px); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="ui"></div>
+
+<script>
+const ui = document.getElementById("ui");
+const text = "Sesame Dithupa ";
+
+for (let i = 0; i < 200; i++) {
+
+    const span = document.createElement("span");
+    span.className = "love_word";
+    span.innerText = text;
+
+    let t = i * 0.15;
+
+    // Heart equation
+    let x = 16 * Math.pow(Math.sin(t), 3);
+    let y = 13 * Math.cos(t) - 
+            5 * Math.cos(2*t) - 
+            2 * Math.cos(3*t) - 
+            Math.cos(4*t);
+
+    span.style.left = (400 + x * 20) + "px";
+    span.style.top = (400 - y * 20) + "px";
+
+    ui.appendChild(span);
+}
+</script>
+
+</body>
+</html>
